@@ -50,14 +50,18 @@ choices = []
 
 #Functions
 def win(guesses):
-
+ 
     #If Player Wins the Game
+    """ Input: Number of tries remaining
+        Output: You won the Game """
     winning = " You won with " + str(guesses) + " guesses remaining! "
     return winning
 
 def right(choice_index,level,guesses):
 
     #If Player Chooses Right
+    """ Input: which answer id on,level, and number of tries remaining
+        Output: Choice function with a reduced number of tries remaining """
     correct_answer = """ Correct! '""" + str(choices[choice_index]) + "' is the right choice! "
     print correct_answer
     quiz_text[level] = quiz_text[level].replace(holders[choice_index],choices[choice_index])
@@ -66,6 +70,8 @@ def right(choice_index,level,guesses):
 def wrong(guesses,level,choice_index):
 
     #If Player Chooses Wrong
+    """ Input: Number of tries remaining, level, and which answer user is on
+        Output: Game over or Wrong answer message """
     wrong_choice = choices.pop()
     if guesses == 0:
         game_over = " You've chosen wrong too many times! Game over! "
@@ -81,6 +87,9 @@ Try again; you have """ + str(guesses) + ' trys left!'
 def choice(level,choice_index,guesses):
 
     #Prompt User for an Answer
+    """ Input: level, which question the user is on, and how many tries remaining
+        Output: Winning message, Correct answer message, Wrong answer message,
+                or Game over message """
     print quiz_text[level]
     if choice_index == len(answers[level]):
         return win(guesses)
@@ -104,7 +113,7 @@ def start(level):
 
 def quiz():
 
-    #Quiz Function
+    #Overarching Quiz Function
     user_prompt = """ Please select a game difficulty by typing it in!
 Possible choices include easy, medium, and hard """
     level = raw_input(user_prompt)
